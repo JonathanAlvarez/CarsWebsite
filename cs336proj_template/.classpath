@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/commons-dbcp.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/commons-lang.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/commons-pool.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/cs336proj.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/cs336proj-domain.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/javassist-3.4.GA.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/mysql-connector-java-5.1.10-bin.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/openjpa-1.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/mgmuscari/workspace/cs336projtest/war/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,125 @@
+
+
+   You are not authorized to view this page. If you have not changed any configuration files, please examine the file conf/tomcat-users.xml in your installation. That file will contain the credentials to let you use
+   this webapp.
+
+   You will need to add manager role to the config file listed above. For example:
+<role rolename="manager"/>
+<user username="tomcat" password="s3cret" roles="manager"/>
+
+   For more information - please see the Manager App HOW-TO.
+
+
+
+Instructions for using this project template:
+
+Here's an updated summary of the project:
+[x] change your own profile info
+     [x] add new cars and change existing ones from your profile
+     [x] add new hobbies and change existing ones from your profile
+   Optional:
+     [o] Extensible set of profile attributes (either by database inserts or 
+          esp. via administrator actions)
+     [o] Hierarchical profiles (connected to topics)
+[x] search for a user by profile info
+[x] view another user's profile info
+     [x] view their their cars, hobbies
+     [x] make a friend request
+  Optional:
+    [o] privacy controls on who can see each piece of profile info
+          (friends, or everyone, or friends of friends)
+
+[x] Adminstrator page (the direct_sql_query.jsp but with user-access restriction)
+[ ] view friends of friends
+[ ] browse blog entries by topic hierachies
+-----
+
+
+[x] login JA/AF
+[x] logout page JA
+[x] register user JA/AF
+[x] view a list of your friends AF
+[x] view/search all available blog/forum entries AF
+[x] view your own profile JA 
+    [x]  view friend requests; accept/reject those requests AF
+[x] search for a car by car info AF
+[x] send message to another user AF
+    [x] look at/receive messages you've gotten AF
+[x] post a blog message / create a forum topic AF
+    [x] choose or insert new top heirarchies AF
+    [x] view a blog message / view a forum topic AF
+    [x] comment on a blog message / comment on a forum topic AF
+
+
+
+
+
+
+
+
+
+
+[02 : 57 PM] April 10 Epedemic Optikz:
+me:
+	view your own profile
+	change your own profile info
+	view another user's profile info
+	search for a user by profile info
+	logout
+[02 : 57 PM] April 10 Epedemic Optikz:
+you:
+	register user
+	search for a car by car info
+	send message to another user
+	look at/receive messages you've gotten
+
+register user
+view your own profile
+	view your friends
+	view friend requests
+change your own profile info
+search for a user by profile info
+view another user's profile info
+	make a friend request
+	links to send user a message
+		
+search for a car by car info
+send message to another user
+look at/receive messages you've gotten
+logout page
+
+post a blog message / create a forum topic
+view a blog message / view a forum topic
+comment on a blog message / comment on a forum topic
+view/search all available blog messages / view/search all available blog messages forum topics
+	
+	
+
+1) unzip this archive to a convenient working directory
+2) Change Directory to the main project folder (e.g. cd ~/cs336proj)
+3) run the command:
+       ant warfile
+4) if the warfile builds successfully, you are ready to deploy.
+   8a) otherwise you have errors in your code. debug using the compiler output.
+5) open a web browser and navigate to:
+   http://128.6.XXX.XXX:8080
+   NOTE: XXX.XXX will be the last two octets of the IP of your Tomcat machine
+6) you should see the Apache Tomcat root page.
+7) choose "Tomcat Manager" from the "Administration" menu
+8) enter your Tomcat username and password when prompted
+9) in the Manager application, scroll to the "WAR file to deploy" subsection of the "Deploy" section.
+10) click "Choose File"
+11) navigate to the working directory where your project is located
+12) navigate to the "dist" subfolder
+13) choose cs336proj.war and click "Open"
+14) click the "Deploy" button underneath the "Choose File" box
+15) when the page refreshes, you should see a row in the "Applications" section corresponding to your application
+16) click on the path of your application to visit its index.jsp
+
+
+After making a change to your project (to redeploy):
+
+
+1) Navigate to the Tomcat Manager application as explained above.
+2) Find your project in the Applications table. Click the "Undeploy" link in the "Commands" column.
+3) Repeat steps 9-14 above.

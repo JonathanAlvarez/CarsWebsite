@@ -1,0 +1,21 @@
+package user;
+
+public class profileIDHandler {
+
+    private int userID;
+
+    public NameHandler() { 
+        userID = null;
+    }
+
+    public void setProfileID(int ID) {
+        userID = ID;
+    }
+
+    public Int getProfileID() { 
+        return userID;
+    }
+}
+
+//was in display_profile
+//<!--<jsp:useBean id="user" class="user.profileIDHandler" scope="session"/>-->

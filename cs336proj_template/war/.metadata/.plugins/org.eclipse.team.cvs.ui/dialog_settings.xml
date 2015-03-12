@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="CheckoutAsWizard">
+		<list key="CheckoutAsLocationSelectionPage.STORE_PREVIOUS_LOCATIONS">
+			<item value="/home/epedemic/Documents/School/CS336/cs336proj_template/war"/>
+		</list>
+	</section>
+	<section name="NewLocationWizard">
+		<list key="ConfigurationWizardMainPage.STORE_PATH_ID">
+			<item value="/.autofs/ilab/ilab_users/afreed/CVS"/>
+		</list>
+		<list key="ConfigurationWizardMainPage.STORE_HOSTNAME_ID">
+			<item value="trix.rutgers.edu"/>
+		</list>
+		<list key="ConfigurationWizardMainPage.STORE_USERNAME_ID">
+			<item value="epedemic"/>
+		</list>
+	</section>
+</section>

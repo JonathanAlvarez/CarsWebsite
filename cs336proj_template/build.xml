@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+
+<project name="cs336project" basedir="." default="usage">
+
+	<property name="name" value="cs336proj"/>
+
+	<property name="war.dir" value="war"/>
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value=".classes"/>
+	<property name="docs.dir" value="${war.dir}/docs"/>
+	<property name="webclasses.dir" value="${war.dir}/WEB-INF/classes"/>
+	<property name="weblib.dir" value="${war.dir}/WEB-INF/lib"/>
+	<property name="dist.dir" value="dist"/>
+	<property name="db.dir" value="db"/>
+
+	<property name="applibs.dir" value="applibs"/>
+
+	<property name="domain.classes" value="net/cs336proj/*.class"/>
+	<property name="tomcat.context" value="tomcat/META-INF"/>
+
+	<property file="build.properties"/>
+
+	<path id="master-classpath">
+		<fileset dir="${applibs.dir}/j2ee">
+			<include name="servlet-api.jar"/>
+		</fileset>
+		<fileset dir="${applibs.dir}/jakarta-commons">
+			<include name="commons-logging.jar"/>
+		</fileset>
+	</path>
+
+	<path id="build-classpath">
+	  <fileset dir="${applibs.dir}/mysql-connector-java-5.1.10">
+			<include name="mysql*.jar"/>
+		</fileset>
+		<fileset dir="${applibs.dir}/antlr">
+			<include name="antlr*.jar"/>
+		</fileset>
+		<fileset dir="${applibs.dir}/cglib">
+			<include name="cglib*.jar"/>
+		</fileset>
+		<fileset dir="${applibs.dir}/jakarta-commons">
+			<include name="commons-collections.jar"/>
+			<include name="commons-dbcp.jar"/>
+			<include name="commons-lang.jar"/>
+			<include name="commons-pool.jar"/>
+		</fileset>
+		<fileset dir="${applibs.dir}/javassist">
+			<include name="javassist*.jar"/>
+		</fileset>
+		<fileset dir="${applibs.dir}/log4j">
+			<include name="log4j*.jar"/>
+		</fileset>
+	</path>
+
+
+	<target name="usage">
+		<echo message=""/>
+		<echo message="cs336proj build file"/>
+		<echo message="------------------------------------------------------"/>
+		<echo message=""/>
+		<echo message="Available targets are:"/>
+		<echo message=""/>
+		<echo message="clean    --> Clean output dirs"/>
+		<echo message="build    --> Compile main Java sources and copy libraries"/>
+		<echo message="docs     --> Create complete Javadoc documentation"/>
+		<echo message="warfile  --> Build the web application archive"/>
+		<echo message="setupDB  --> Initialize the database"/>
+		<echo message="all      --> Clean, build, docs, warfile, tests"/>
+		<echo message=""/>
+	</target>
+
+
+	<target name="clean" description="Clean output dirs (build, docs, testbuild, testreports, weblib, dist)">
+		<delete dir="${build.dir}"/>
+		<delete dir="${docs.dir}"/>
+		<delete>
+			<fileset dir="${webclasses.dir}">
+				<include name="jdbc.properties"/>
+			</fileset>
+		</delete>
+		<delete dir="${weblib.dir}"/>
+		<delete dir="${dist.dir}"/>
+	</target>
+
+
+	<target name="build" description="Compile main source tree java files into class files, generate jar files">
+
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${weblib.dir}"/>
+
+		<javac destdir="${build.dir}" source="1.5" target="1.5"
+				debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="${src.dir}"/>
+			<classpath refid="master-classpath"/>
+			<classpath refid="build-classpath"/>
+		</javac>
+
+		<copy todir="${webclasses.dir}" preservelastmodified="true">
+			<fileset dir="${src.dir}">
+				<include name="jdbc.properties"/>
+			</fileset>
+		</copy>
+
+		<!-- cs336proj-domain.jar -->
+		<jar jarfile="${weblib.dir}/${name}-domain.jar" compress="true">
+			<fileset dir="${src.dir}">
+				<include name="META-INF/orm.xml"/>
+				<include name="META-INF/persistence.xml"/>
+			</fileset>
+			<fileset dir="${build.dir}">
+				<include name="${domain.classes}"/>
+			</fileset>
+		</jar>
+
+		<!-- rest of cs336proj classes -->
+		<jar jarfile="${weblib.dir}/${name}.jar" compress="true">
+			<fileset dir="${build.dir}">
+				<include name="**/*"/>
+				<exclude name="${domain.classes}"/>
+			</fileset>
+		</jar>
+
+		<!-- copy Tomcat META-INF -->
+		<copy todir="${weblib.dir}" preservelastmodified="true">
+			<fileset dir="${applibs.dir}/mysql-connector-java-5.1.10">
+				<include name="mysql*.jar"/>
+			</fileset>
+			<fileset dir="${applibs.dir}/antlr">
+				<include name="antlr*.jar"/>
+			</fileset>
+			<fileset dir="${applibs.dir}/cglib">
+				<include name="cglib*.jar"/>
+			</fileset>
+			<fileset dir="${applibs.dir}/j2ee">
+				<include name="jstl.jar"/>
+			</fileset>
+			<fileset dir="${applibs.dir}/jakarta-commons">
+				<include name="commons-collections.jar"/>
+				<include name="commons-dbcp.jar"/>
+				<include name="commons-lang.jar"/>
+				<include name="commons-logging.jar"/>
+				<include name="commons-pool.jar"/>
+			</fileset>
+			<fileset dir="${applibs.dir}/jakarta-taglibs">
+				<include name="standard.jar"/>
+			</fileset>
+			<fileset dir="${applibs.dir}/javassist">
+				<include name="javassist*.jar"/>
+			</fileset>
+			<fileset dir="${applibs.dir}/log4j">
+				<include name="log4j*.jar"/>
+			</fileset>
+
+		</copy>
+
+	</target>
+
+
+	<target name="docs" description="Create complete Javadoc documentation">
+
+		<delete dir="${docs.dir}"/>
+		<mkdir dir="${docs.dir}"/>
+
+		<javadoc sourcepath="${src.dir}" destdir="${docs.dir}" windowtitle="cs336proj"
+				source="1.5" author="true" version="true" use="true" packagenames="*">
+			<doctitle><![CDATA[<h1>cs336proj</h1>]]></doctitle>
+			<bottom><![CDATA[<i>CS336 Student Project 2009</i>]]></bottom>
+			<classpath refid="master-classpath"/>
+			<classpath refid="build-classpath"/>
+		</javadoc>
+
+	</target>
+
+
+	<target name="dist" depends="warfile">
+		<!--
+			Delegate to warfile target by depending on it.
+		-->
+	</target>
+
+
+	<target name="warfile" depends="build,docs" description="Build the web application archive">
+
+		<mkdir dir="${dist.dir}"/>
+
+		<war warfile="${dist.dir}/${name}.war" basedir="${war.dir}" webxml="${war.dir}/WEB-INF/web.xml">
+			<include name="*"/>
+			<include name="docs/**"/>
+			<include name="html/**"/>
+			<include name="styles/**"/>
+			<include name="images/**"/>
+			<include name="WEB-INF/*.*"/>
+			<exclude name="WEB-INF/web.xml"/>
+			<include name="WEB-INF/classes/*.*"/>
+			<include name="WEB-INF/lib/**"/>
+			<include name="WEB-INF/jsp/**"/>
+			<include name="WEB-INF/classes/META-INF/*"/>
+			<include name="META-INF/*"/>
+			<exclude name="**/.*"/>
+			<exclude name="WEB-INF/geronimo-web.xml"/>
+		</war>
+
+	</target>
+
+	<target name="setupMYSQL" description="Set up MYSQL database properties" if="useMYSQL">
+
+		<property name="db.driver" value="${mysql.driver}"/>
+		<property name="db.url" value="${mysql.url}"/>
+		<property name="db.user" value="${mysql.user}"/>
+		<property name="db.pw" value="${mysql.pw}"/>
+
+	</target>
+
+
+	<target name="setupDB" depends="setupMYSQL" description="Initialize the selected database">
+
+		<ant antfile="${db.dir}/build.xml"/>
+
+	</target>
+
+
+	<target name="all" depends="clean,build,docs,warfile" description="Clean,build,docs,warfile"/>
+
+</project>
